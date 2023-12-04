@@ -8,18 +8,19 @@ const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
 
-const upload = multer({ dest: __dirname + "project/public/images" });
+const upload = multer({ dest: __dirname + "project/images" });
 
 mongoose
-    .connect("mongodb+srv://sgold3:DUmN5HAYWIug0uWd@cluster0.ftlk3p6.mongodb.net/?retryWrites=true&w=majority")
+    // .connect("mongodb+srv://sgold3:DUmN5HAYWIug0uWd@cluster0.ftlk3p6.mongodb.net/?retryWrites=true&w=majority")
+    .connect("mongodb://localhost/projects")
     .then(() => {
         console.log("Connected to mongodb!")
     })
     .catch((error) => console.log("Couldn't connect to mongodb!", error));
 
-// app.get("/", (req, res) => {
-//     res.sendFile(__dirname + "project/index.html");
-// });
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/project/index.html");
+});
 
 const projectSchema = new mongoose.Schema({
     name:String,
