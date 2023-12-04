@@ -8,7 +8,7 @@ const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
 
-const upload = multer({ dest: __dirname + "/public/images" });
+const upload = multer({ dest: __dirname + "project/public/images" });
 
 mongoose
     .connect("mongodb+srv://sgold3:DUmN5HAYWIug0uWd@cluster0.ftlk3p6.mongodb.net/?retryWrites=true&w=majority")
@@ -16,11 +16,11 @@ mongoose
         console.log("Connected to mongodb!")
     })
     .catch((error) => console.log("Couldn't connect to mongodb!", error));
-/*
+
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "project/index.html");
 });
-*/
+
 const projectSchema = new mongoose.Schema({
     name:String,
     link:String,
@@ -54,7 +54,7 @@ app.post("/api/projects", upload.single("img"), (req, res) => {
     }
 
     if (req.file) {
-        project.img = "images/" + req.file.filename;
+        project.img = "project/images/" + req.file.filename;
     }
 
     createProject(project, res);
@@ -84,7 +84,7 @@ const updateProject = async (req, res) => {
     };
 
     if(req.file) {
-        fieldsToUpdate.img = "images/" + req.file.filename;
+        fieldsToUpdate.img = "project/images/" + req.file.filename;
     }
 
     const result = await Project.updateOne({_id: req.params.id}, fieldsToUpdate);
