@@ -11,16 +11,16 @@ const mongoose = require("mongoose");
 const upload = multer({ dest: __dirname + "/public/images" });
 
 mongoose
-    .connect("mongodb://localhost/projects")
+    .connect("mongodb+srv://sgold3:DUmN5HAYWIug0uWd@cluster0.ftlk3p6.mongodb.net/?retryWrites=true&w=majority")
     .then(() => {
         console.log("Connected to mongodb!")
     })
     .catch((error) => console.log("Couldn't connect to mongodb!", error));
-
+/*
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
-
+*/
 const projectSchema = new mongoose.Schema({
     name:String,
     link:String,
