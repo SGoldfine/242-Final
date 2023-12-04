@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Volunteer Work and Activities</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <header id="main-header">
+            <h1>College Projects</h1>
+            <nav id="main-nav">
+                <div id="nav-toggle">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul id="main-nav-items" class="hidden">
+                    <li><a href="../about/index.html" id="p1of5">About Me</a></li>
+                    <li><a href="../resume/index.html" id="p2of5">Resume</a></li>
+                    <li><a href="../class/index.html" id="p3of5">Classes</a></li>
+                    <li><a href="#" id="p4of5">Projects</a></li>
+                    <li><a href="../contact/index.html" id="p5of5">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="columns two-columns">
+            <a href="#" id="add-link">Add Project</a>
+            <div id="project-list" class="columns"></div>
+            <div id="project-details-column">
+                <h2>Details</h2>
+
+                <div id="project-details"></div>
+            </div>
+        </div>
+
+        <div id="add-edit-project-container" class="dialog transparent">
+            <span class="close">&times;</span>
+
+            <h3 id="add-edit-title">Thing</h3>
+            <form id="add-edit-project-form" method="post">
+                <input type="hidden" name="_id" value="-1" />
+                <p>
+                    <label for="name">Project name:</label>
+                    <input type="text" id="name" name="name" required>
+                </p>
+                <p>
+                    <label for="link">Link:</label>
+                    <input type="text" id="link" name="link" required />
+                </p>
+                <p id="description-p ">
+                    <label class="inline">Description:</label>
+                    <a href="#" id="add-description">Add Description</a>
+                    <section id="description-boxes"></section>
+                </p>
+                <p>
+                    <label for="img">Upload Image:</label>
+                    <input type="file" id="img" name="img" />
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </div>
+        <footer id="main-footer">
+            <p>goldfis@email.sc.edu</p>
+            <p>862-505-4613</p>
+        </footer>
+    </body>
+</html>
