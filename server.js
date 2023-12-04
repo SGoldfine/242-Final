@@ -8,7 +8,7 @@ const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
 
-const upload = multer({ dest: __dirname + "project/images" });
+const upload = multer({ dest: __dirname + "/images" });
 
 mongoose
     .connect("mongodb+srv://goldfis:a2aT02kqGMOlrI6v@cluster0.a67urhq.mongodb.net/?retryWrites=true&w=majority")
@@ -54,7 +54,7 @@ app.post("/api/projects", upload.single("img"), (req, res) => {
     }
 
     if (req.file) {
-        project.img = "project/images/" + req.file.filename;
+        project.img = "images/" + req.file.filename;
     }
 
     createProject(project, res);
@@ -103,7 +103,7 @@ const updateProject = async (req, res) => {
     };
 
     if(req.file) {
-        fieldsToUpdate.img = "project/images/" + req.file.filename;
+        fieldsToUpdate.img = "images/" + req.file.filename;
     }
 
     const result = await Project.updateOne({_id: req.params.id}, fieldsToUpdate);
