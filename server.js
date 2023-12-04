@@ -17,9 +17,9 @@ mongoose
     })
     .catch((error) => console.log("Couldn't connect to mongodb!", error));
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-});
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + "/index.html");
+// });
 
 const projectSchema = new mongoose.Schema({
     name:String,
