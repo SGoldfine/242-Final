@@ -10,12 +10,12 @@ app.use(cors());
 const mongoose = require("mongoose");
 
 const storage = multer.diskStorage({
-    destination:(req,file, cb)=>{
+    destination:(req, file, cb) => {
         cb(null, "./uploads");
     },
-    filename:(req,file,cb) => {
-        cb(null,file.originalname);
-    }
+    filename:(req, file, cb) => {
+        cb(null, file.originalname);
+    },
 });
 
 const upload = multer({ storage: storage });
