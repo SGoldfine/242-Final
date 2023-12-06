@@ -3,12 +3,22 @@ const app = express();
 const Joi = require("joi");
 const multer = require("multer");
 app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 const mongoose = require("mongoose");
 
-const upload = multer({ dest: __dirname + "/public/images" });
+const storage = multer.diskStorage({
+    destination:(req,file, cb)=>{
+        cb(null, "./uploads");
+    },
+    filename:(req,file,cb) => {
+        cb(null,file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 mongoose
     .connect("mongodb+srv://goldfis:a2aT02kqGMOlrI6v@cluster0.a67urhq.mongodb.net/?retryWrites=true&w=majority")
@@ -63,7 +73,7 @@ app.post("/api/projects", upload.single("img"), (req, res) => {
     });
 
     if (req.file) {
-        project.img = "images/" + req.file.filename;
+        project.img = "uploads/" + req.file.filename;
     }
 
     createProject(project, res);
@@ -93,7 +103,7 @@ const updateProject = async (req, res) => {
     };
 
     if(req.file) {
-        fieldsToUpdate.img = "images/" + req.file.filename;
+        fieldsToUpdate.img = "uploads/" + req.file.filename;
     }
 
     const result = await Project.updateOne({_id: req.params.id}, fieldsToUpdate);
@@ -103,12 +113,12 @@ const updateProject = async (req, res) => {
 
 app.delete("/api/projects/:id", upload.single("img"), (req, res) => {
     removeProject(res, req.params.id);
-})
+});
 
 const removeProject = async (res, id) => {
     const project = await Project.findByIdAndDelete(id);
     res.send(project);
-}
+};
 
 const validateProject = (project) => {
     const schema = Joi.object({
