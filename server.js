@@ -26,9 +26,9 @@ const projectSchema = new mongoose.Schema({
 
 const Project = mongoose.model("Project", projectSchema);
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
-});
+}); */
 
 app.get("/api/projects", (req, res) => {
     getProjects(res);
